@@ -195,7 +195,7 @@
         
            
 
-    </div>    
+        
             
         
     
@@ -213,7 +213,7 @@
 
     // the link to your model provided by Teachable Machine export panel
     const URL = "./my-pose-model(goddess)/";
-    let model, webcam, ctx, labelContainer, maxPredictions,countCorrect=0,countWrong=0;
+    let model, webcam, ctx, labelContainer, maxPredictions,countCorrect=0,countWrong=0,k=0;
     
     async function init() {
         const modelURL = URL + "model.json";
@@ -242,7 +242,7 @@
             labelContainer.appendChild(document.createElement("div"));
         }
     }
-
+    
     async function loop(timestamp) {
         webcam.update(); // update the webcam frame
         await predict();
@@ -276,7 +276,7 @@
 
     function redirectToPage() {
                 
-                window.location.href = "http://127.0.0.1:5500/downDog.html"; // Replace with the desired URL
+                window.location.href = "http://127.0.0.1:5500/treepose.html"; // Replace with the desired URL
               }
 
     function drawPose(pose) {
@@ -306,9 +306,10 @@
     }
 
     function speakText(countCorrect,){
+      
                  if ('speechSynthesis' in window) {
   // Speech synthesis API supported
-
+  
   var initialSpeech = new SpeechSynthesisUtterance();
   initialSpeech.text = 'Goddess Pose. This pose opens the hips and chest while strengthening and toning the lower body. Goddess pose stimulates the uro-genital, respiratory and cardiovascular systems.';
   initialSpeech.volume = 1; // 0 to 1
@@ -344,9 +345,9 @@
   nextSpeech.voice = voices[0];
   initialSpeech.voice = voices[0]; 
   // Speak the text
-  if(countCorrect==-1)
+  if(k==0)
   {
-    
+    k=1;
     speechSynthesis.speak(initialSpeech);
     setTimeout(function() {
             }, 5000);
